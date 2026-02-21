@@ -44,7 +44,7 @@ if "messages" not in st.session_state:
 with st.sidebar:
     import ollama, json
     st.header("⚙️ Model selection")
-    st.write("Select a model initiate a conversation.")
+    st.write("Select a model to initiate a conversation.")
 
     raw_model_data = json.loads(ollama.list().model_dump_json())
     raw_model_list = raw_model_data['models']
@@ -57,15 +57,15 @@ with st.sidebar:
     
     # Simple logic switcher for the demo
     selected_model = st.radio(
-        "Available cloud models (no self-hosted money, my M1 will kill me :p):",
+        "Available cloud models (no self-hosted capacity right now, my M1 will kill me lol)",
         cloud_models_list,
         index=0
     )
     
     st.divider()
     st.subheader("About")
-    st.write("This is a basic Streamlit chatbot template.")
-    st.write("To connect a real AI model, modify the `generate_model_response` function in the source code.")
+    st.write("A quick and dirty chatbot UI")
+    st.write("Currently runs Ollama's cloud models. I'm a little tight on money :)")
     
     if st.button("Clear Chat History"):
         st.session_state.messages = []
