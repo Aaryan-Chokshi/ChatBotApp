@@ -6,7 +6,7 @@ import time
 # Replace this function with your actual AI model integration
 # =================================================================
 
-def get_bot_response(user_message, model):
+def get_bot_response(history, user_message, model):
     """
     This function contains the logic to generate a response.
     Currently, it uses simple rule-based logic.
@@ -17,7 +17,7 @@ def get_bot_response(user_message, model):
 
         stream = chat(
             model=model,
-            messages=[{'role': 'user', 'content': f'{user_message}'}],
+            messages=[*history, {'role': 'user', 'content': f'{user_message}'}],
             stream=True
         )
 
@@ -102,7 +102,7 @@ if prompt:
 
         # Simulate typing effect for visual feedback
         # NOTE: Replace the logic inside this block with your actual Model call
-        bot_reply = get_bot_response(prompt, selected_model)
+        bot_reply = get_bot_response(st.session_state.messages, prompt, selected_model)
         
         # Simulate streaming text
         # for chunk in bot_reply:
